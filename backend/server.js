@@ -1,24 +1,18 @@
-// backend/server.js
 import express from "express";
 import cors from "cors";
 
 const app = express();
+
+// Allow all origins (for testing)
 app.use(cors());
 app.use(express.json());
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("VeloXyra backend is live!");
-});
+app.get("/", (req, res) => res.send("Backend is live!"));
 
-// Add to cart route
 app.post("/add-to-cart", (req, res) => {
   const { product } = req.body;
   res.json({ message: `${product} added to cart!` });
 });
 
-// Use Render assigned port
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
